@@ -1,26 +1,26 @@
 Accumulator = {}
 Accumulator.__index = Accumulator
 
-Accumulator.__newindex = function(  )
+function Accumulator.__newindex()
     error("Cannot add new index to accumulator. Please use append")
 end
 
-Accumulator.__tostring = function( self )
+function Accumulator:__tostring()
     return rawget(self, "text")
 end
 
-Accumulator.new = function(  )
+function Accumulator.new()
     local newAccumulator = setmetatable({text=""}, Accumulator)
 
     return newAccumulator
 end
 
-Accumulator.append = function( self, text )
+function Accumulator:append(text)
     rawset(self, "text", rawget(self, "text")..text )
     return tostring(self)
 end
 
-Accumulator.reset = function( self )
+function Accumulator:reset()
     rawset(self, "text", "")
 end
 
